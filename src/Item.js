@@ -3,16 +3,22 @@ import shirt from './assets/images/shirt.png'
 
 
 const Item = ()=>{
+    const data=  {
+        thumbnail : shirt,
+        price : 499,
+        discountedPrice : 360,
+        productName : "White Hoodie"
+    }
     return (
     <div className={"item-card"}>
-            <img src={shirt} cclassName={"img-fluid"} alt="Page shirt item" />
+            <img src={data.thumbnail} cclassName={"img-fluid"} alt="Page shirt item" />
             <div className={"item-card__information"}>
                 <div className="pricing">
-                    <span>360</span>
-                    <small><strike>499</strike></small>
+                    <span>{data.discountedPrice}</span>
+                    <small><strike>{data.price}</strike></small>
                 </div>
                 <div className={"title"}>
-                    <h3>Title of the Item</h3>
+                    <h3>{data.productName}</h3>
                 </div>
             </div>
             <button className={"cart-add"}>

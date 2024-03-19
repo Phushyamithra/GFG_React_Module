@@ -1,14 +1,8 @@
 import cartIcon from './assets/icons/cart.svg'
-import shirt from './assets/images/shirt.png'
 
 
-const Item = ()=>{
-    const data=  {
-        thumbnail : shirt,
-        price : 499,
-        discountedPrice : 360,
-        productName : "White Hoodie"
-    }
+const Item = ({data})=>{
+    console.log(props);
     return (
     <div className={"item-card"}>
             <img src={data.thumbnail} cclassName={"img-fluid"} alt="Page shirt item" />

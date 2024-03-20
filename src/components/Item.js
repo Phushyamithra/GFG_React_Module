@@ -1,8 +1,7 @@
-import cartIcon from './assets/icons/cart.svg'
+import cartIcon from '.././assets/icons/cart.svg'
 
 
 const Item = ({data})=>{
-    console.log(props);
     return (
     <div className={"item-card"}>
             <img src={data.thumbnail} cclassName={"img-fluid"} alt="Page shirt item" />

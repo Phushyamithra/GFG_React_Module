@@ -1,16 +1,19 @@
-import Item from './Item'
-import shirt from './assets/images/shirt.png'
+import ProductList from "./components/ProductList";
+import Header from "./components/Header"
+// consists entire page header body and footer
 
 
-const App= ()=> {
+const App = () => {
   return (
     <div className="App">
-      <Item data ={    {thumbnail : shirt,
-        price : 499,
-        discountedPrice : 360,
-        productName : "White Hoodie"} }/>
+      {/* header section */}
+      <Header />
+      {/* body section */}
+      <ProductList />
     </div>
   );
-}
+};
+
+
 
 export default App;

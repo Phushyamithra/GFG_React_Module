@@ -5,14 +5,22 @@ import {useState} from "react"
 
 const Item = ({data})=>{
 
-    const [cartMessage, setCartMessage] = useState("Product not added to cart yet !! ");
-    const clickOnCart = () => {
-        setCartMessage("Product added to cart.");
-        console.log("Clicked");
+    const [counter,setCounter] = useState(0);
+
+    const descreaseCounterByOne = () => {
+      let count= counter-1;
+      if(count<0){
+        return;
+      }
+      setCounter(count);
     }
 
-
+    const increaseCounterByOne = () => {
+      let count = counter+1;
+      setCounter(count);
+    }
     return (
+
     <div className={"item-card"}>
             <img src={data.thumbnail} cclassName={"img-fluid"} alt="Page shirt item" />
             <div className={"item-card__information"}>
@@ -24,12 +32,17 @@ const Item = ({data})=>{
                     <h3>{data.productName}</h3>
                 </div>
             </div>
-            <small className={"cart-message"}>{cartMessage}</small>
-            <button className={"cart-add"} onClick={clickOnCart}>
+            {/* <button className={"cart-add"} onClick={clickOnCart}>
                 <span>Add to Cart</span>
                 <img src={cartIcon} alt="Cart logo" />
             </button>
-            
+             */}
+            <div className={"cart-addon"}>
+                <button onClick={descreaseCounterByOne}><span>-</span></button>
+                <span className={"counter"}>{counter}</span>
+                <button onClick={increaseCounterByOne}><span>+</span></button>
+            </div>
+
     </div>
     );
 }

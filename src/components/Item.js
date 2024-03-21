@@ -22,7 +22,7 @@ const Item = ({data})=>{
     return (
 
     <div className={"item-card"}>
-            <img src={data.thumbnail} cclassName={"img-fluid"} alt="Page shirt item" />
+            <img src={data.thumbnail} className={"img-fluid"} alt="Page shirt item" />
             <div className={"item-card__information"}>
                 <div className="pricing">
                     <span>{data.discountedPrice}</span>

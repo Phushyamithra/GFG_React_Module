@@ -1,109 +1,132 @@
-import { useState } from "react";
-import shirt from ".././assets/shirt.png";
+import { useState } from "react"
 import Item from "./Item"
 
 
-
 const ProductList = () => {
+    const [title, setTitle] = useState("")
+    const [price, setPrice] = useState(0)
+    const [discountedPrice, setDiscountedPrice] = useState(0)
+    const [thumbnail, setThumbnail] = useState("")
 
-    const [title,setTitle]=useState("");
-    const [price,setPrice]=useState(499);
-    const [discountedPrice,setDiscountedPrice]=useState(0);
-    const prodList = [
-        {
-            id: 1,
-            thumbnail: shirt,
-            price: price,
-            discountedPrice: discountedPrice,
-            productName: title,
-        },
-        {
-            id: 2,
-            thumbnail: shirt,
-            price: 245,
-            discountedPrice: 230,
-            productName: "White Shirt",
-        },
-        {
-            id: 3,
-            thumbnail: shirt,
-            price: 245,
-            discountedPrice: 230,
-            productName: "Black Hoodie",
-        },
-        {
-            id: 4,
-            thumbnail: shirt,
-            price: 245,
-            discountedPrice: 230,
-            productName: "Black Shirt",
-        },
-        {
-            id: 5,
-            thumbnail: shirt,
-            price: 245,
-            discountedPrice: 230,
-            productName: "Tshirt",
-        },
-        {
-            id: 6,
-            thumbnail: shirt,
-            price: 245,
-            discountedPrice: 230,
-            productName: "Jeans",
-        },
-        {
-            id: 7,
-            thumbnail: shirt,
-            price: 245,
-            discountedPrice: 230,
-            productName: "Sweatshirt",
-        },
-        {
-            id: 8,
-            thumbnail: shirt,
-            price: 245,
-            discountedPrice: 230,
-            productName: "Converse Shoes",
+    const [item, setItem] = useState({
+        id: 0,
+        title: "Title of this Item 1",
+        price: 450,
+        discountedPrice: 340,
+        thumbnail: "shirt.png"
+    })
+
+    const handleTitle = (event) => {
+        // console.log(event)
+        // console.log(event.target.value)
+        setTitle(event.target.value)
+        setItem({
+            ...item,
+            title: event.target.value
+        })
+    }
+
+    const handlePrice = event => {
+        setPrice(event.target.value)
+        setItem({
+            ...item,
+            price: event.target.value
+        })
+    }
+
+    const handleDiscountedPrice = event => {
+        setDiscountedPrice(event.target.value)
+        setItem({
+            ...item,
+            discountedPrice: event.target.value
+        })
+    }
+
+    const handleThumbnail = event => {
+        setThumbnail(event.target.value)
+        setItem({
+            ...item,
+            thumbnail: event.target.value
+        })
+    }
+
+    const submitForm = event => {
+        event.preventDefault();
+        console.log({
+            title: title,
+            price,
+            discountedPrice,
+            thumbnail
+        })
+        if(discountedPrice > price) {
+            alert("Discounted Price cannot be greater than price")
+            return;
         }
-    ];
-    
-    const changeTitle = (props) => {
-        setTitle(props.target.value);
-        // console.log(props);
+        setItem({
+            title,
+            price,
+            discountedPrice,
+            thumbnail
+        })
     }
 
-    const changePrice = (props) => {
-      setPrice(props.target.value);
-    }
-    const changeDiscountedPrice = props => {
-        setDiscountedPrice(props.target.value);
-    }
     return (
-        <div className="product-wrapper">
-            <div className="form">
-                <form >
+        <div className={"product-wrapper"}>
+            <div className={"form"}>
+                <form onSubmit={submitForm}>
                     <h2>Item Card Details</h2>
-                    <div className="input-field">
+                    <div className={"input-field"}>
                         <label htmlFor="title">Title</label>
-                        <input type="text" placeholder="Enter Title" onChange={changeTitle}/> 
-                        <label htmlFor="title">Price</label>
-                        <input type="text" placeholder="Enter Price" onChange={changePrice}/>
-                        <label htmlFor="title">Discounted Price</label>
-                        <input type="text" placeholder="Enter New Price" onChange={changeDiscountedPrice}/>
+                        <input 
+                            type="text" 
+                            placeholder="Enter Title" 
+                            value={title} 
+                            onChange={handleTitle}
+                            required
+                        />
+                    </div>
+                    <div className={"input-field"}>
+                        <label htmlFor="price">Price</label>
+                        <input 
+                            type="number" 
+                            placeholder="Enter Price" 
+                            value={price} 
+                            onChange={handlePrice}
+                            required
+                        />
+                    </div>
+                    <div className={"input-field"}>
+                        <label htmlFor="discountPrice">Discount Price</label>
+                        <input 
+                            type="number" 
+                            placeholder="Enter Discounted Price" 
+                            value={discountedPrice} 
+                            onChange={handleDiscountedPrice}
+                            required
+                        />
+                    </div>
+                    <div className={"input-field"}>
+                        <label htmlFor="thumbnail">Thumbnail</label>
+                        <input 
+                            type="text" 
+                            placeholder="Enter Thumbnail name" 
+                            value={thumbnail} 
+                            onChange={handleThumbnail}
+                            required
+                        />
+                    </div>
+                    <div className={"submit-wrap"}>
+                        <button>Update</button>
                     </div>
                 </form>
-
             </div>
-
-
             <div>
-            <div >
-                <Item data={prodList[0]}/>
-            </div>
+                <div>
+                    <Item data={item} />
+                </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default ProductList;

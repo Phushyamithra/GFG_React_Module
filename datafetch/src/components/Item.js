@@ -3,7 +3,7 @@ import cartIcon from '.././assets/icons/cart.svg'
 
 // click on add to cart action 
 
-const Item = ({ data }) => {
+const Item = ({ data, updateTitle}) => {
   const [counter,setCounter] = useState(0);
   const incCounter= () => {
     setCounter(counter+1);
@@ -27,6 +27,7 @@ const Item = ({ data }) => {
           <h3>{data.title}</h3>
         </div>
       </div>
+      <button type="button" onClick={() => updateTitle(data.id)}>Update the title !!</button>
       {
        counter == 0 ?
         (  <button className={"cart-add"} onClick={incCounter}>

@@ -7,15 +7,18 @@ const Item = ({ data, updateTitle }) => {
   const [counter, setCounter] = useState(0);
 
   // counter functionality
-  const incCounter = () => {
+  const incCounter = (event) => {
+    event.stopPropagation();
     setCounter(counter + 1);
   }
-  const decCounter = () => {
+  const decCounter = (event) => {
+    event.stopPropagation();
     if (counter > 0)
       setCounter(counter - 1);
     else
       return;
-  }
+  
+    }
 
   const [showModal, setShowModal] = useState(false);
 
@@ -51,7 +54,36 @@ const Item = ({ data, updateTitle }) => {
           )
         }
       </div>
-      {showModal && <Modal closeModal={handleModal} />}
+      {showModal && <Modal closeModal={handleModal}>
+        <div className="item-card__modal">
+          <div className="img-wrap">
+            <img className={"img-fluid"} src={data.thumbnail} alt={data.title} />
+          </div>
+          <div className="meta">
+            <h3>{data.title}</h3>
+            <div className={"pricing"}>
+              <span>₹{data.discountedPrice}</span>
+              <small>
+                <strike>₹{data.price}</strike>
+              </small>
+            </div>
+            <p>{data.description}</p>
+            {
+              counter < 1 ?
+                <button className={"cart-add card-add__modal"} onClick={incCounter}>
+                  <span>Add to Cart</span>
+                  <img src={cartIcon} alt="Cart Icon" />
+                </button>
+                :
+                <div className="cart-addon card-addon__modal">
+                  <button onClick={decCounter}><span>-</span></button>
+                  <span>{counter}</span>
+                  <button onClick={incCounter}><span>+</span></button>
+                </div>
+            }
+          </div>
+        </div>
+      </Modal>}
     </>
   );
 }

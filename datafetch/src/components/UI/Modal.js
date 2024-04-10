@@ -1,13 +1,14 @@
 import  ReactDOM  from "react-dom";
 import Backdrop from './Loader.js'
-const Modal = ({closeModal}) => {
+import { Children } from "react";
+const Modal = ({closeModal, children}) => {
     return (
         ReactDOM.createPortal(
             <>
                 <Backdrop closeModal={closeModal} />
                 <div className="modal"> 
-                    Modal Content
-                    <span><button onClick={closeModal}> X </button></span>
+                    <span><button type="close"  onClick={closeModal}> X </button></span>
+                    <div className="content">{children}</div>
                 </div>
             </>,document.getElementById("modal-root")
             )

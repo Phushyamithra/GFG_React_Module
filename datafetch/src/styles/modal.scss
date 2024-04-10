@@ -6,7 +6,7 @@
     background-color: white;
     padding: 1rem;
     border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 8px rgba(232, 70, 70, 0.25);
     z-index: 1101;
     animation: slide-down 300ms ease-out forwards;
 
@@ -14,7 +14,7 @@
         position: absolute;
         right: 10px;
         top: 10px;
-        background-color: unset;
+        background-color: orangered;
         border: unset;
         cursor: pointer;
     }
